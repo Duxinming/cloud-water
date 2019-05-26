@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/list/list",
+    "pages/mission/mission",
+    "pages/work/work",
+    "pages/history/history"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "东农水吧",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f2f3f1",
+    "onReachBottomDistance": 1,
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#cdcdcd",
+    "selectedColor": "#1296db",
+    "list": [
+      {
+        "pagePath": "pages/mission/mission",
+        "iconPath": "./image/list.png",
+        "selectedIconPath": "./image/selectedList.png",
+        "text": "订单"
+      },
+      {
+        "pagePath": "pages/list/list",
+        "iconPath": "./image/weater.png",
+        "selectedIconPath": "./image/selectedWeater.png",
+        "text": "主页"
+      }
+    ]
+  },
+  "networkTimeout": {},
+  "usingComponents": {
+    "van-row": "/van-ui/vant-weapp/dist/row/index",
+    "van-col": "/van-ui/vant-weapp/dist/col/index"
+  },
+  "debug": true,
+  "navigateToMiniProgramAppIdList": [
+    "wxe5f52902cf4de896"
+  ],
+  "sitemapLocation": "sitemap.json"
+}

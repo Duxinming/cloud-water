@@ -1,0 +1,19 @@
+{
+  "usingComponents": {
+    "van-button": "/van-ui/vant-weapp/lib/button/index",
+    "van-field": "/van-ui/vant-weapp/dist/field/index",
+    "van-popup": "/van-ui/vant-weapp/lib/popup/index",
+    "van-cell": "/van-ui/vant-weapp/dist/cell/index",
+    "van-cell-group": "/van-ui/vant-weapp/dist/cell-group/index",
+    "van-datetime-picker": "/van-ui/vant-weapp/dist/datetime-picker/index",
+    "van-picker": "/van-ui/vant-weapp/dist/picker/index",
+    "van-radio": "/van-ui/vant-weapp/dist/radio/index",
+    "van-radio-group": "/van-ui/vant-weapp/dist/radio-group/index",
+    "van-checkbox": "/van-ui/vant-weapp/dist/checkbox/index",
+    "van-checkbox-group": "/van-ui/vant-weapp/dist/checkbox-group/index",
+    "van-panel": "/van-ui/vant-weapp/dist/panel/index",
+    "van-tab": "/van-ui/vant-weapp/dist/tab/index",
+    "van-tabs": "/van-ui/vant-weapp/dist/tabs/index",
+    "van-loading": "/van-ui/vant-weapp/dist/loading/index"
+  }
+}

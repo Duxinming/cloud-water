@@ -1,0 +1,85 @@
+<view class="background" style=" height: 100vh;">
+    <view style="background-color: white;">
+        <van-cell class="height" title="寝室楼" value='{{ showLocal }}' is-link arrow-direction="down" bind:click='showLocal' />
+        <view class="box">
+            <van-cell-group>
+                <van-field size='large' value="{{ userNum }}" input-align='{{right}}' clearable label="寝室号" placeholder="请输入寝室号" type='number' maxlength='{{length}}' bind:input='changeNum' />
+            </van-cell-group>
+        </view>
+        <van-cell title="送达时间" value="{{ showDate }}" is-link arrow-direction="down" bind:click="showTime" />
+        <view style="padding:2vh; width:100vw; display:flex; flex-direction:row-reverse;">
+            <view style="width:7vw"></view>
+            <van-button type="danger" bind:click='submit' size='small'>确认订单</van-button>
+        </view>
+    </view>
+
+    <van-popup show="{{ currentLocal }}" position="bottom" overlay="{{ true }}" bind:close="onCloseLocal" bind:click-overlay="onCloseLocal">
+        <van-picker show-toolbar="{{ true }}" columns="{{ columns }}" bind:change="onChange" bind:cancel='onCloseLocal' bind:confirm='onCloseAndGetLocal' />
+    </van-popup>
+    <van-popup show="{{ showTime }}" position="bottom" overlay="{{ true }}" bind:close="onCloseTime">
+        <van-datetime-picker type="date" value="{{ currentDate }}" min-date="{{ minDate }}" bind:input="onInput" bind:confirm='onCloseAndGetValue' bind:cancel='onCloseTime' />
+    </van-popup>
+    <van-popup show="{{ showSuccess }}" bind:click-overlay='onCloseSuccess' custom-style='height: 25vh; width: 50vw; line-height: 25vh; text-align: center;'>
+        提交成功~
+    </van-popup>
+    <van-popup show="{{ showFail }}" bind:click-overlay='onCloseFail' custom-style='height: 25vh; width: 50vw; line-height: 25vh; text-align: center;'>
+        提交失败，请稍后重试~
+    </van-popup>
+    <van-popup show="{{ showLocalFail }}" bind:click-overlay='onCloseLocalFail' custom-style='height: 25vh; width: 50vw; line-height: 25vh; text-align: center;'>
+        请选择寝室楼~
+    </van-popup>
+    <van-popup show="{{ showNumFail }}" bind:click-overlay='onCloseNumFail' custom-style='height: 25vh; width: 50vw; line-height: 25vh; text-align: center;'>
+        请输入寝室号~
+    </van-popup>
+    <view class="kong"></view>
+    <van-tabs sticky swipeable animated sticky active="{{ active }}" bind:change="showArticle">
+        <van-tab title="未完成">
+            <view class="zong">
+                <view wx:for="{{article}}" wx:key="unique">
+                    <view class="article">
+                        <view class="info">
+                            <image class="infourl" src="{{item.avatarUrl}}" />
+                            <view class="nickName">{{item.nickName}}</view>
+                            <view class="down">{{item.down?'已送达':'未送达'}}</view>
+                        </view>
+                        <view>
+                            <view class="item">
+                                <view class="item-local-1">寝室楼：****</view>
+                                <view class="item-num">寝室号：***</view>
+                                <view class="item-time">送达时间：{{item.time}}</view>
+                            </view>
+                            <view class="kong"></view>
+                        </view>
+                    </view>
+                    <view class="kong"></view>
+                </view>
+            </view>
+        </van-tab>
+        <van-tab title="已完成">
+            <view class="zong">
+                <view wx:for="{{articleDown}}" wx:key="uniqueDown">
+                    <view class="article">
+                        <view class="info">
+                            <image class="infourl" src="{{item.avatarUrl}}" />
+                            <view class="nickName">{{item.nickName}}</view>
+                            <view class="down">{{item.down?'已送达':'未送达'}}</view>
+                        </view>
+                        <view>
+                            <view class="item">
+                                <view class="item-local-1">寝室楼：{{item.local1}}</view>
+                                <view class="item-num">寝室号：{{item.num}}</view>
+                                <view class="item-time">送达时间：{{item.time}}</view>
+                            </view>
+                            <view class="kong"></view>
+                        </view>
+                    </view>
+                    <view class="kong"></view>
+                </view>
+            </view>
+        </van-tab>
+    </van-tabs>
+    <view class="loading" wx:if="{{loading}}">
+        <van-loading type="spinner" custom-class='background-color:"#fff"' />
+    </view>
+    <view class="max" wx:if="{{max}}">已经到底了哦~</view>
+</view>

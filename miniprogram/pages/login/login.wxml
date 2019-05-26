@@ -1,0 +1,17 @@
+<!-- 需要使用 button 来授权登录 -->
+<van-popup custom-style='border-radius: 10rpx;' show="{{ show }}">
+    <view class="page0">
+        <view class="ceng">
+            <!-- <image class='water' src="http://pic.yupoo.com/lingyua/6f9bcad2/2524898d.jpg" /> -->
+            <view class="title">提示</view>
+        </view>
+        <view class="ceng2">
+            <view class="content">东农水吧小程序请求用户权限</view>
+            <view class="content">请登陆后体验完整功能</view>
+        </view>
+        <van-button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" type="primary">
+            授权登陆
+        </van-button>
+        <view wx:else>请升级微信版本</view>
+    </view>
+</van-popup>

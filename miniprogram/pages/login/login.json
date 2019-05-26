@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "van-popup": "/van-ui/vant-weapp/dist/popup/index",
+    "van-button": "/van-ui/vant-weapp/dist/button/index"
+  }
+}
