@@ -101,49 +101,52 @@ Page({
       title: '提示',
       content: '是否确认删除？',
       success(res) {
-        wx.cloud.callFunction({
-          name: 'remove',
-          data: {
-            _id: event.target.dataset.id,
-            down: event.target.dataset.down
-          },
-          success(res) {
-            console.log()
-            if (event.target.dataset.down === 0) {
-              that.getMine()
-              wx.showToast({
-                title: '删除成功~',
-                success(res) {
-                  setTimeout(() => {
-                    wx.hiedTost({
+        let confirm = res.confirm
+        if (confirm) {
+          wx.cloud.callFunction({
+            name: 'remove',
+            data: {
+              _id: event.target.dataset.id,
+              down: event.target.dataset.down
+            },
+            success(res) {
+              console.log()
+              if (event.target.dataset.down === 0) {
+                that.getMine()
+                wx.showToast({
+                  title: '删除成功~',
+                  success(res) {
+                    setTimeout(() => {
+                      wx.hiedTost({
 
-                    })
-                  }, 500);
-                }
-              })
-            }
-            if (event.target.dataset.down === 1) {
-              that.getMineDown()
-              wx.showToast({
-                title: '删除成功~',
-                success(res) {
-                  setTimeout(() => {
-                    wx.hideToast({
+                      })
+                    }, 500);
+                  }
+                })
+              }
+              if (event.target.dataset.down === 1) {
+                that.getMineDown()
+                wx.showToast({
+                  title: '删除成功~',
+                  success(res) {
+                    setTimeout(() => {
+                      wx.hideToast({
 
-                    })
-                  }, 500);
-                }
-              })
+                      })
+                    }, 500);
+                  }
+                })
+              }
+              else {
+                wx.showModal({
+                  title: '提示',
+                  content: '删除失败，请稍后重试。',
+                  showCancel: false
+                })
+              }
             }
-            else {
-              wx.showModal({
-                title: '提示',
-                content: '删除失败，请稍后重试。',
-                showCancel: false
-              })
-            }
-          }
-        })
+          })
+        }
       }
     })
   },
