@@ -1,4 +1,4 @@
- // miniprogram/pages/history/history.js
+// miniprogram/pages/history/history.js
 Page({
 
   /**
@@ -95,32 +95,51 @@ Page({
     })
   },
 
-  remove(event){
+  remove(event) {
     let that = this
-    console.log(event)
     wx.showModal({
       title: '提示',
       content: '是否确认删除？',
-      success(res){
+      success(res) {
         wx.cloud.callFunction({
           name: 'remove',
           data: {
             _id: event.target.dataset.id,
             down: event.target.dataset.down
           },
-          success(res){
+          success(res) {
             console.log()
-            if(event.target.dataset.down === 0){
+            if (event.target.dataset.down === 0) {
               that.getMine()
-            } 
-            if(event.target.dataset.down === 1){
-              that.getMineDown()
+              wx.showToast({
+                title: '删除成功~',
+                success(res) {
+                  setTimeout(() => {
+                    wx.hiedTost({
+
+                    })
+                  }, 500);
+                }
+              })
             }
-            else{
+            if (event.target.dataset.down === 1) {
+              that.getMineDown()
+              wx.showToast({
+                title: '删除成功~',
+                success(res) {
+                  setTimeout(() => {
+                    wx.hideToast({
+
+                    })
+                  }, 500);
+                }
+              })
+            }
+            else {
               wx.showModal({
                 title: '提示',
                 content: '删除失败，请稍后重试。',
-                showCancel: false 
+                showCancel: false
               })
             }
           }
