@@ -7,7 +7,7 @@
 .img {
     width: 100vw;
     height: 30vh;
-    background-color: #f2f3f4;
+    background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,6 +19,12 @@
     height: 20vw;
     border-radius: 20vw;
     align-self: center;
+}
+
+.infoNickName{
+    font-family: "微软雅黑";
+    font-size: 90%;
+    margin-top: 2vh;
 }
 
 .kong {

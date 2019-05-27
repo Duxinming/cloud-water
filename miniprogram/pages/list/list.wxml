@@ -1,6 +1,7 @@
 <view class="background">
     <view class="img">
         <image class="infoimg" src="{{avatarUrl}}" />
+        <view class="infoNickName">{{nickName}}</view>
     </view>
     <van-cell title="历史订单" is-link url="/pages/history/history" link-type="navigateTo" />
     <van-cell title="去送水" is-link url="/pages/work/work" link-type="navigateTo" />
@@ -13,6 +14,7 @@
             <view style="font-size:90%;">一、此小程序不支持支付功能，请与工作人员当面支付</view>
             <view style="font-size:90%;">二、请提前三天左右订水，以免出现未能按时送达的现象</view>
             <view style="font-size:90%;">三、请勿乱发订单，如经查实将记入黑名单</view>
+            <view style="font-size:90%;">四、如出现信息填写错误的情况，请及时在历史订单中删除</view>
         </view>
         <image class="jser" src="http://pic.yupoo.com/lingyua/609b5277/d7d323ec.jpg" />
     </view>

@@ -57,6 +57,7 @@
                         </view>
                     </view>
                     <view class="kong"></view>
+                    <view class="kong"></view>
                 </view>
             </view>
         </van-tab>
@@ -92,6 +93,7 @@
                             <view class="kong"></view>
                         </view>
                     </view>
+                    <view class="kong"></view>
                     <view class="kong"></view>
                 </view>
             </view>

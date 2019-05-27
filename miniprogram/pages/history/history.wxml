@@ -1,51 +1,71 @@
 <!-- miniprogram/pages/history/history.wxml -->
-<van-tabs sticky swipeable animated sticky active="{{ active }}" bind:change="showArticle">
-    <van-tab title="未完成">
-        <view class="zong">
-            <view wx:for="{{article}}" wx:key="unique">
-                <view class="article">
-                    <view class="info">
-                        <image class="infourl" src="{{item.avatarUrl}}" />
-                        <view class="nickName">{{item.nickName}}</view>
-                        <view class="down">{{item.down?'已送达':'未送达'}}</view>
-                    </view>
-                    <view>
-                        <view class="item">
-                            <view class="item-local-1">寝室楼：{{item.local1}}</view>
-                            <view class="item-num">寝室号：{{item.num}}</view>
-                            <view class="item-time">送达时间：{{item.time}}</view>
+<view class="background">
+    <van-tabs sticky swipeable animated sticky active="{{ active }}" bind:change="showArticle">
+        <van-tab title="未完成">
+            <view class="zong">
+                <view wx:for="{{article}}" wx:key="unique">
+                    <view class="article">
+                        <view class="info">
+                            <image class="infourl" src="{{item.avatarUrl}}" />
+                            <view class="nickName">{{item.nickName}}</view>
+                            <view class="down">{{item.down?'已送达':'未送达'}}</view>
                         </view>
-                        <view class="kong"></view>
-                    </view>
-                </view>
-                <view class="kong"></view>
-            </view>
-        </view>
-    </van-tab>
-    <van-tab title="已完成">
-        <view class="zong">
-            <view wx:for="{{articleDown}}" wx:key="uniqueDown">
-                <view class="article">
-                    <view class="info">
-                        <image class="infourl" src="{{item.avatarUrl}}" />
-                        <view class="nickName">{{item.nickName}}</view>
-                        <view class="down">{{item.down?'已送达':'未送达'}}</view>
-                    </view>
-                    <view>
-                        <view class="item">
-                            <view class="item-local-1">寝室楼：{{item.local1}}</view>
-                            <view class="item-num">寝室号：{{item.num}}</view>
-                            <view class="item-time">送达时间：{{item.time}}</view>
+                        <view>
+                            <view class="item">
+                                <view class="item-local-1">寝室楼：{{item.local1}}</view>
+                                <view class="item-num">寝室号：{{item.num}}</view>
+                                <view class="item-time">
+                                    送达时间：{{item.time}}
+                                    <view style="margin-top:3vh; width:100vw; display:flex; flex-direction:row-reverse; aline-self: end;">
+                                        <view style="width:4vw"></view>
+                                        <van-button size='small' type="danger" bind:click='remove' data-id="{{item._id}}" data-down="{{item.down}}" data-index='{{index}}'>
+                                            删  除
+                                        </van-button>
+                                    </view>
+                                </view>
+                            </view>
+                            <view class="kong"></view>
                         </view>
-                        <view class="kong"></view>
                     </view>
+                    <view class="kong"></view>
+                    <view class="kong"></view>
                 </view>
-                <view class="kong"></view>
             </view>
-        </view>
-    </van-tab>
-</van-tabs>
-<view class="loading" wx:if="{{loading}}">
-    <van-loading type="spinner" custom-class='background-color:"#fff"' />
+        </van-tab>
+        <van-tab title="已完成">
+            <view class="zong">
+                <view wx:for="{{articleDown}}" wx:key="uniqueDown">
+                    <view class="article">
+                        <view class="info">
+                            <image class="infourl" src="{{item.avatarUrl}}" />
+                            <view class="nickName">{{item.nickName}}</view>
+                            <view class="down">{{item.down?'已送达':'未送达'}}</view>
+                        </view>
+                        <view>
+                            <view class="item">
+                                <view class="item-local-1">寝室楼：{{item.local1}}</view>
+                                <view class="item-num">寝室号：{{item.num}}</view>
+                                <view class="item-time">
+                                    送达时间：{{item.time}}
+                                    <view style="margin-top:3vh; width:100vw; display:flex; flex-direction:row-reverse; aline-self: end;">
+                                        <view style="width:4vw"></view>
+                                        <van-button size='small' type="danger" bind:click='remove' data-id="{{item._id}}" data-down="{{item.down}}" data-index='{{index}}'>
+                                            删  除
+                                        </van-button>
+                                    </view>
+                                </view>
+                            </view>
+                            <view class="kong"></view>
+                        </view>
+                    </view>
+                    <view class="kong"></view>
+                    <view class="kong"></view>
+                </view>
+            </view>
+        </van-tab>
+    </van-tabs>
+    <view class="loading" wx:if="{{loading}}">
+        <van-loading type="spinner" custom-class='background-color:"#fff"' />
+    </view>
+    <view class="max" wx:if="{{max}}">已经到底了哦~</view>
 </view>
-<view class="max" wx:if="{{max}}">已经到底了哦~</view>

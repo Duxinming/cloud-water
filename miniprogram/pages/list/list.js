@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    avatarUrl: ''
+    avatarUrl: '',
+    nickName: ''
   },
 
   /**
@@ -18,7 +19,8 @@ Page({
       key: 'key',
       success(res) {
         that.setData({
-          avatarUrl: res.data.avatarUrl
+          avatarUrl: res.data.avatarUrl,
+          nickName: res.data.nickName
         })
       }
     })

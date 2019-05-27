@@ -1,4 +1,4 @@
-<view class="background" style=" height: 100vh;">
+<view class="background">
     <view style="background-color: white;">
         <van-cell class="height" title="寝室楼" value='{{ showLocal }}' is-link arrow-direction="down" bind:click='showLocal' />
         <view class="box">
@@ -52,6 +52,7 @@
                         </view>
                     </view>
                     <view class="kong"></view>
+                    <view class="kong"></view>
                 </view>
             </view>
         </van-tab>
@@ -66,13 +67,14 @@
                         </view>
                         <view>
                             <view class="item">
-                                <view class="item-local-1">寝室楼：{{item.local1}}</view>
-                                <view class="item-num">寝室号：{{item.num}}</view>
+                                <view class="item-local-1">寝室楼：****</view>
+                                <view class="item-num">寝室号：***</view>
                                 <view class="item-time">送达时间：{{item.time}}</view>
                             </view>
                             <view class="kong"></view>
                         </view>
                     </view>
+                    <view class="kong"></view>
                     <view class="kong"></view>
                 </view>
             </view>

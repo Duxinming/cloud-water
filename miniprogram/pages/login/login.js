@@ -72,7 +72,7 @@ Page({
       success(res) {
         if (res.code) {
           // 发起网络请求
-         that.setStorage()
+          that.setStorage()
         } else {
           console.log('登录失败！' + res.errMsg)
         }
@@ -85,9 +85,23 @@ Page({
     wx.getStorage({
       key: 'key',
       success(res) {
-        console.log(res)
-        wx.switchTab({
-          url: '/pages/mission/mission'
+        let nickName1 = res.data.nickName
+        let avatarUrl1 = res.data.avatarUrl
+        wx.getUserInfo({
+          success(res) {
+            const nickName = res.userInfo.nickName
+            const avatarUrl = res.userInfo.avatarUrl
+            if (nickName === nickName1 && avatarUrl === avatarUrl1) {
+              wx.switchTab({
+                url: '/pages/mission/mission'
+              })
+            } else {
+              that.setStorage()
+              wx.switchTab({
+                url: '/pages/mission/mission'
+              })
+            }
+          }
         })
       },
       fail() {

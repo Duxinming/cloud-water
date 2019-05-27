@@ -1,4 +1,4 @@
-// miniprogram/pages/history/history.js
+ // miniprogram/pages/history/history.js
 Page({
 
   /**
@@ -94,6 +94,41 @@ Page({
       }
     })
   },
+
+  remove(event){
+    let that = this
+    console.log(event)
+    wx.showModal({
+      title: '提示',
+      content: '是否确认删除？',
+      success(res){
+        wx.cloud.callFunction({
+          name: 'remove',
+          data: {
+            _id: event.target.dataset.id,
+            down: event.target.dataset.down
+          },
+          success(res){
+            console.log()
+            if(event.target.dataset.down === 0){
+              that.getMine()
+            } 
+            if(event.target.dataset.down === 1){
+              that.getMineDown()
+            }
+            else{
+              wx.showModal({
+                title: '提示',
+                content: '删除失败，请稍后重试。',
+                showCancel: false 
+              })
+            }
+          }
+        })
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

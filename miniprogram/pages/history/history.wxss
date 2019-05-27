@@ -46,6 +46,10 @@
     margin-top: 2vh;
 }
 
+.item-time{
+    display: flex;
+}
+
 .info {
     display: flex;
     height: 8vh;
