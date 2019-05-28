@@ -78,7 +78,8 @@ Page({
   onCloseAndGetLocal(a, index) {
     this.setData({
       currentLocal: false,
-      showLocal: a.detail.value
+      showLocal: a.detail.value,
+      ceng: a.detail.index[2] + 1
     });
   },
   //改变寝室号 
@@ -593,6 +594,7 @@ Page({
       }
     })
   },
+
   //点击搜索按钮
   search() {
     let that = this
@@ -606,12 +608,62 @@ Page({
         console.log(2)
       }
       if (that.data.userNum !== null && that.data.showLocal === '请选择公寓楼') {
-        that.searchTimeAndNumDown()
-        console.log(3)
+        if (that.data.userNum === '') {
+          that.searchTimeDown()
+        } else {
+          if (this.data.userNum / 10 < 1 || this.data.userNum / 100 < 1) {
+            wx.showModal({
+              title: '提示',
+              content: '请输入正确的寝室号',
+              success(res) {
+                if (res.confirm) {
+                  console.log('ok')
+                } else {
+                  console.log('no')
+                }
+              }
+            })
+          } else {
+            that.searchTimeAndNumDown()
+            console.log(3)
+          }
+        }
       }
       if (that.data.userNum !== null && that.data.showLocal !== '请选择公寓楼') {
-        that.searchAllDown()
-        console.log(4)
+        if (that.data.userNum === '') {
+          that.searchTimeAndLocalDown()
+        } else {
+          if (this.data.userNum / 10 < 1 || this.data.userNum / 100 < 1) {
+            wx.showModal({
+              title: '提示',
+              content: '请输入正确的寝室号',
+              success(res) {
+                if (res.confirm) {
+                  console.log('ok')
+                } else {
+                  console.log('no')
+                }
+              }
+            })
+          } else {
+            if (that.data.ceng === parseInt(that.data.userNum / 100) || that.data.showLocal[2] + 1 === parseInt(that.data.userNum / 100)) {
+              that.searchAllDown()
+              console.log(4)
+            } else {
+              wx.showModal({
+                title: '提示',
+                content: '请输入与楼层对应的寝室号',
+                success(res) {
+                  if (res.confirm) {
+                    console.log('ok')
+                  } else {
+                    console.log('no')
+                  }
+                }
+              })
+            }
+          }
+        }
       }
     } else {
       if (that.data.userNum === null && that.data.showLocal === '请选择公寓楼') {
@@ -623,12 +675,62 @@ Page({
         console.log(6)
       }
       if (that.data.userNum !== null && that.data.showLocal === '请选择公寓楼') {
-        that.searchTimeAndNum()
-        console.log(7)
+        if (that.data.userNum === '') {
+          that.searchTime()
+        } else {
+          if (this.data.userNum / 10 < 1 || this.data.userNum / 100 < 1) {
+            wx.showModal({
+              title: '提示',
+              content: '请输入正确的寝室号',
+              success(res) {
+                if (res.confirm) {
+                  console.log('ok')
+                } else {
+                  console.log('no')
+                }
+              }
+            })
+          } else {
+            that.searchTimeAndNum()
+            console.log(7)
+          }
+        }
       }
       if (that.data.userNum !== null && that.data.showLocal !== '请选择公寓楼') {
-        that.searchAll()
-        console.log(8)
+        if (that.data.userNum === '') {
+          that.searchTimeAndLocal()
+        } else {
+          if (this.data.userNum / 10 < 1 || this.data.userNum / 100 < 1) {
+            wx.showModal({
+              title: '提示',
+              content: '请输入正确的寝室号',
+              success(res) {
+                if (res.confirm) {
+                  console.log('ok')
+                } else {
+                  console.log('no')
+                }
+              }
+            })
+          } else {
+            if (that.data.ceng === parseInt(that.data.userNum / 100) || that.data.showLocal[2] + 1 === parseInt(that.data.userNum / 100)) {
+              that.searchAll()
+              console.log(8)
+            } else {
+              wx.showModal({
+                title: '提示',
+                content: '请输入与楼层对应的寝室号',
+                success(res) {
+                  if (res.confirm) {
+                    console.log('ok')
+                  } else {
+                    console.log('no')
+                  }
+                }
+              })
+            }
+          }
+        }
       }
     }
   },

@@ -7,6 +7,7 @@ const db = cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
+  console.log(event.local[0])
   const list = event.list
   if (event.type === 1) {
     return await db.collection('articles').where({
@@ -25,9 +26,9 @@ exports.main = async (event, context) => {
     return await db.collection('articles').where({
       down: 0,
       time: event.time,
-      local0: event.Local0, 
-      local1: event.Local1, 
-      local2: event.Local2
+      local0: event.local[0], 
+      local1: event.local[1], 
+      local2: event.local[2]
     }).orderBy('now', 'desc').limit(list).get({
       success(res) {
         return res
@@ -55,9 +56,9 @@ exports.main = async (event, context) => {
     return await db.collection('articles').where({
       down: 0,
       time: event.time,
-      local0: Local0, 
-      local1: Local1, 
-      local2: Local2,
+      local0: event.local[0], 
+      local1: event.local[1], 
+      local2: event.local[2],
       num: event.num
     }).orderBy('now', 'desc').limit(list).get({
       success(res) {

@@ -97,58 +97,70 @@ Page({
 
   remove(event) {
     let that = this
-    wx.showModal({
-      title: '提示',
-      content: '是否确认删除？',
-      success(res) {
-        let confirm = res.confirm
-        if (confirm) {
-          wx.cloud.callFunction({
-            name: 'remove',
-            data: {
-              _id: event.target.dataset.id,
-              down: event.target.dataset.down
-            },
-            success(res) {
-              console.log()
-              if (event.target.dataset.down === 0) {
-                that.getMine()
-                wx.showToast({
-                  title: '删除成功~',
-                  success(res) {
-                    setTimeout(() => {
-                      wx.hiedTost({
+    let a = new Date().getHours()
+    if (a < 17 || a > 23) {
+      wx.showModal({
+        title: '提示',
+        content: '是否确认删除？',
+        success(res) {
+          let confirm = res.confirm
+          if (confirm) {
+            wx.cloud.callFunction({
+              name: 'remove',
+              data: {
+                _id: event.target.dataset.id,
+                down: event.target.dataset.down
+              },
+              success(res) {
+                console.log()
+                if (event.target.dataset.down === 0) {
+                  that.getMine()
+                  wx.showToast({
+                    title: '删除成功~',
+                    success(res) {
+                      setTimeout(() => {
+                        wx.hiedTost({})
+                      }, 500);
+                    }
+                  })
+                }
+                if (event.target.dataset.down === 1) {
+                  that.getMineDown()
+                  wx.showToast({
+                    title: '删除成功~',
+                    success(res) {
+                      setTimeout(() => {
+                        wx.hideToast({
 
-                      })
-                    }, 500);
-                  }
-                })
+                        })
+                      }, 500);
+                    }
+                  })
+                }
+                else {
+                  wx.showModal({
+                    title: '提示',
+                    content: '删除失败，请稍后重试。',
+                    showCancel: false
+                  })
+                }
               }
-              if (event.target.dataset.down === 1) {
-                that.getMineDown()
-                wx.showToast({
-                  title: '删除成功~',
-                  success(res) {
-                    setTimeout(() => {
-                      wx.hideToast({
-
-                      })
-                    }, 500);
-                  }
-                })
-              }
-              else {
-                wx.showModal({
-                  title: '提示',
-                  content: '删除失败，请稍后重试。',
-                  showCancel: false
-                })
-              }
-            }
-          })
+            })
+          }
         }
-      }
-    })
+      })
+
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '当前为工作人员送水时间，请勿更改订单。',
+        showCancel: false,
+        success(res){
+          console.log(res)
+        },
+      })
+    }
+
   },
 
   /**
