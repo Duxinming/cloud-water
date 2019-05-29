@@ -142,12 +142,6 @@ Page({
                       }, 500);
                     }
                   })
-                } else {
-                  wx.showModal({
-                    title: '提示',
-                    content: '删除失败，请稍后重试。',
-                    showCancel: false
-                  })
                 }
               }
             })
