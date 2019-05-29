@@ -131,7 +131,9 @@ Page({
                     success(res) {
                       setTimeout(() => {
                         wx.hideToast({
-
+                          success(res){
+                            console.log(res)
+                          }
                         })
                       }, 500);
                     }
