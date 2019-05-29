@@ -119,7 +119,11 @@ Page({
                     title: '删除成功~',
                     success(res) {
                       setTimeout(() => {
-                        wx.hiedTost({})
+                        wx.hideToast({
+                          success(res) {
+                            console.log(res)
+                          }
+                        })
                       }, 500);
                     }
                   })
@@ -131,15 +135,14 @@ Page({
                     success(res) {
                       setTimeout(() => {
                         wx.hideToast({
-                          success(res){
+                          success(res) {
                             console.log(res)
                           }
                         })
                       }, 500);
                     }
                   })
-                }
-                else {
+                } else {
                   wx.showModal({
                     title: '提示',
                     content: '删除失败，请稍后重试。',
@@ -157,7 +160,7 @@ Page({
         title: '提示',
         content: '当前为工作人员送水时间，请勿更改订单。',
         showCancel: false,
-        success(res){
+        success(res) {
           console.log(res)
         },
       })
